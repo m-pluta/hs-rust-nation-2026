@@ -84,7 +84,7 @@ This server's IP address on the local network will be provided by the Helsing te
 You'll once again need an authorization token, which will allow you to issue a simple `GET` request to the `/quadrant` endpoint:
 
 ```
-curl 192.168.x.y:port/quadrant --header 'Authorization: 123456'
+curl 192.168.0.56:31415/quadrant --header 'Authorization: 606545'
 ```
 
 The target quadrant will change every 5 minutes throughout the day, and every minute once we enter "competition mode" at the end of the day (and actively judge whose solution is fastest).
