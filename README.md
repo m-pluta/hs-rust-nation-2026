@@ -39,7 +39,7 @@ Don't share it with other teams if you don't want to be sabotaged!
 An example `curl` to drive car #9 forward at 50% speed might look like this:
 
 ```
-curl -X PUT hackathon-9-car.local:5000 \
+curl -X PUT hackathon-9-car.local:50051 \
     --header "Content-Type: application/json" \
     --header "Authorization: 000000" \
     --data '{"speed":0.5,"flip":false}'
