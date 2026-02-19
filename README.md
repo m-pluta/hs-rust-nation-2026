@@ -24,7 +24,7 @@ Don't hesitate to ask the team if you have any questions about the rest of the i
 ## Driving your car
 
 Each car has a number: you can find this on the reverse of the ArUco marker on top.
-Supposing your marker is `N`, your car's control server will be running at `hackathon-N-car.local:50051`.
+Supposing your marker is `N`, your car's control server will be running at `hackathon-N-car.local:5000`.
 
 It's a simple HTTP server! The car is controlled by simply sending `PUT` requests to the root with a JSON body containing two fields:
 
@@ -39,7 +39,7 @@ Don't share it with other teams if you don't want to be sabotaged!
 An example `curl` to drive car #9 forward at 50% speed might look like this:
 
 ```
-curl -X PUT hackathon-9-car.local:50051 \
+curl -X PUT hackathon-9-car.local:5000 \
     --header "Content-Type: application/json" \
     --header "Authorization: 000000" \
     --data '{"speed":0.5,"flip":false}'
