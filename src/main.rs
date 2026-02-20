@@ -5,7 +5,7 @@ use opencv::{
         self, get_predefined_dictionary, DetectorParameters, Dictionary, PREDEFINED_DICTIONARY_NAME,
     },
     core::{Point2f, Vector},
-    imgcodecs, objdetect,
+    imgcodecs,
     prelude::*,
 };
 use reqwest::blocking::Client;
@@ -32,9 +32,6 @@ const ORACLE_URL: &str = "http://192.168.0.56:31415/quadrant";
 const ORACLE_AUTH: &str = "606545";
 
 const CAR_MARKER_ID: i32 = 9;
-
-/// Pixels from target-quadrant-centre before we consider ourselves arrived.
-const ARRIVE_PX: f64 = 25.0;
 
 /// Heading error (rad) below which we drive forward instead of spinning.
 const ANGLE_OK: f64 = 0.50;
@@ -65,21 +62,6 @@ impl Quadrant {
             (true, false) => Self::TopRight,
             (false, true) => Self::BottomLeft,
             (true, true) => Self::BottomRight,
-        }
-    }
-
-    fn centre(self, w: f64, h: f64) -> (f64, f64) {
-        const TOLERANCE: f64 = 0.1;
-
-        match self {
-            // Self::TopLeft => (w * 0.25, h * 0.25),
-            // Self::TopRight => (w * 0.75, h * 0.25),
-            // Self::BottomLeft => (w * 0.25, h * 0.75),
-            // Self::BottomRight => (w * 0.75, h * 0.75),
-            Self::TopLeft => (w * TOLERANCE, h * TOLERANCE),
-            Self::TopRight => (w * (1.0 - TOLERANCE), h * TOLERANCE),
-            Self::BottomLeft => (w * TOLERANCE, h * (1.0 - TOLERANCE)),
-            Self::BottomRight => (w * (1.0 - TOLERANCE), h * (1.0 - TOLERANCE)),
         }
     }
 
